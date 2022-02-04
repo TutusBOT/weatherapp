@@ -41,7 +41,7 @@ let dataForecast = async(whichDayClicked) =>{
 async function getData(userLocation) {
     const userLocationParsed = userLocation || "Warsaw"
 
-    const response = await fetch("http://api.weatherapi.com/v1/forecast.json?key=b25a6516fcc249e8b19121241222901&days=3&q="+userLocationParsed).catch(()=>{console.log("chuj");})
+    const response = await fetch("http://api.weatherapi.com/v1/forecast.json?key=[APIKEY]&days=3&q="+userLocationParsed).catch(()=>{console.log("chuj");})
 
 
 
