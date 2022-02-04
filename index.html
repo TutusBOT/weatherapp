@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=The+Nautigal&display=swap" rel="stylesheet">
+
+    <script src="script.js" defer></script>
+    <link rel="stylesheet" href="style.css">
+    <title>Weather app</title>
+</head>
+<body id="body">
+    <div class="container">
+        <div class="weather-details hide" id="weather-details">
+            <div id="weather-details-inner">
+                <div>Sunrise Sunset</div>
+                <div class="weather-details-hours">Hours</div>
+                <!-- <a href="#" id="button-close" class="button-close" onclick="hideWeatherDetails()">X</a> -->
+            </div>
+            
+                
+            
+        </div>
+        <nav class="navbar">
+            <a href="http://bartlomiej-tutak.pl/projekty" class="logo">
+                T
+            </a>
+            <form onsubmit="changeLocation(); return false">
+                <label for="location" class="search-bar">
+                    <input type="text" id="location" placeholder="Search by city" class="button" size="10">
+                </label>
+                
+            </form>
+        </nav>
+
+        <h1 class="h1">Minimalist weather app</h1>
+
+
+        <div class="card card-left">
+            <h3>Details</h3>
+            <div class="information">
+                <div id="humidity">Humidity </div>
+                <div id="wind">Wind</div>
+                <div id="pressure">pressure</div>
+                <div id="temp-feel">Real feal</div>
+            </div>
+        </div>
+        <div class="card card-main margin-inline">
+            <h3>Current</h3>
+            <div class="information">
+                <div id="weather-state">Weather state</div>
+                <div id="temperature" class="temperature">0</div>
+                <span id="city">City</span>
+                <span id="day">Date</span>
+            </div>
+        </div>
+        <div class="card card-right">
+            <div class="information">
+                <h3>Forecast</h3>
+                <ul>
+                    <li>
+                        <a href="#bottom" onclick="showWeatherDetails(); dataForecast(0);" class="a-show-details" id="forecast1">
+                            <img id="img-day1" src="weathericons/113.png" alt="">
+                            <p id="weather-day1">Info about weather</p>
+                            <p id="day-day1">Today</p>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#bottom" onclick="showWeatherDetails(); dataForecast(1);" class="a-show-details">
+                            <img id="img-day2" src="weathericons/113.png" alt="">
+                            <p id="weather-day2">Info about weather</p>
+                            <p id="day-day2">Monday</p>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#bottom" onclick="showWeatherDetails(); dataForecast(2);" class="a-show-details">
+                            <img id="img-day3" src="weathericons/113.png" alt="">
+                            <p id="weather-day3">Info about weather</p>
+                            <p id="day-day3">Monday</p>
+                        </a>
+                        
+                    </li>
+                </ul>
+                <h6 class="card-right-description">Click on each day to get more details</h6>
+            </div>
+        </div>
+        <footer>
+            <p>Created by Bartłomiej Tutak</p>
+        
+            <a href="https://www.weatherapi.com/" title="Free Weather API"><img src='//cdn.weatherapi.com/v4/images/weatherapi_logo.png' alt="Weather data by WeatherAPI.com" border="0"></a>
+        </footer>
+    </div>
+    
+</body>
+</html>

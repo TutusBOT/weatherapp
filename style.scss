@@ -1,0 +1,346 @@
+@use "variables/colors" as *;
+@use "variables/mixins" as *;
+@use "variables/fonts" as *;
+*{
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    list-style-type: none;
+}
+
+a,
+a:visited,
+a:hover,
+a:active{
+    color: inherit;
+    text-decoration: inherit;
+}
+
+body{
+    background: linear-gradient(45deg, $gradient-body-1, $gradient-body-2);
+    @include flex-center;
+}
+
+.container{
+    width: 100%;
+    height: 100vh;
+    display: grid;
+    grid-template-columns: repeat(autofit, minmax(300px, 1fr));
+    justify-items: center;
+    row-gap: 10px;
+    .navbar{
+        grid-column: 1 / 4;
+        #location{
+            width: 400px;
+            @include media-width{
+                width: auto;
+            }
+        }
+    }
+    .h1{
+        grid-column: 1 / 4;
+    }
+    .card-left{
+        grid-column: 1 / 2;
+    }
+    .card-main{
+        grid-column: 2 / 3;
+    }
+    .card-right{
+        grid-column: 3 / 4;
+    }
+    footer{
+        grid-column: 1 / 4;
+        // grid-row: 3 / 4;
+    }
+    @include media-width{
+        row-gap: 1rem;
+        .navbar{
+            order: 0;
+        }
+        .h1{
+            order: 1;
+        }
+        #location{
+            width: fit-content;
+        }
+        .card-left{
+            grid-column: 1 / 4;
+            width: 95%;
+            order: 3;
+        }
+        .card-main{
+            order: 2;
+            grid-column: 1 / 4;
+            width: 95%;
+            height: 600px;
+        }
+        .card-right{
+            grid-column: 1 / 4;
+            width: 95%;
+            height: 600px;
+            order: 4;
+        }
+        footer{
+            order: 5;
+        }
+    }
+}
+
+.navbar{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    background: $navbar;
+    color: white;
+    padding-left: 1rem;
+    form{
+        &:focus,:focus-visible{
+            outline: none;
+        }
+    }
+    .button{
+        color: $white;
+        border: none;
+        font-size: 1.5rem;
+        background-color: $navbar;
+    }
+    input[type="button"]{
+        cursor: pointer;
+    }
+    input[type="text"]{
+        border-radius: 10px 0 0 10px;
+        padding-left: .7rem;
+    }
+}
+
+.logo{
+    font-family: 'The Nautigal', cursive;
+    font-size: 3rem;
+    text-align: match-parent;
+    color: $white;
+    font-weight: normal;
+    background: transparent;
+    width: 3rem;
+}
+
+.h1{
+    color: $white;
+    font-family: $font-accent;
+    font-size: clamp(1.75rem, 5vw, 4rem);
+    margin-bottom: 3rem;
+    text-shadow: $shadow;
+    position: relative;
+    padding-bottom: 5px;
+    text-align: center;
+    &::after{
+        content: "";
+        height: 3px;
+        width: 100%;
+        position: absolute;
+        background-color: $white;
+        border-radius: 10px;
+        bottom: 0;
+        left: 0;
+        transition: all 300ms ease-out;
+    }
+    @include media-height{
+        display: none;
+    }
+}
+
+.h1:hover::after{
+    transform: scaleX(0.5);
+}
+
+.card{
+    overflow: hidden;
+    max-width: 100%;
+    font-size: 2rem;
+    padding: 1rem;
+    border-radius: 5px;
+    min-height: 60vh;
+    box-shadow: $shadow;
+    color: $white;
+    text-shadow: 3$shadow;
+    background: linear-gradient(145deg, #8b8b8f, #434347);
+    @include flex-center;
+    font-family: $font-accent;
+    flex-direction: column;
+    grid-template-columns: repeat(1, 1fr);
+    *{
+        margin-top: 1rem;
+    }
+}
+
+.information{
+    @include flex-center;
+    flex-direction: column;
+    #weather-state{
+        @include flex-center;
+        flex-direction: column;
+        img{
+            width: 128px;
+        }
+        span{
+            max-width: 15ch;
+            text-align: center;
+        }
+    }
+    #day{
+        text-align: center;
+    }
+}
+
+footer{
+    align-self: end;
+    width: 100%;
+    height: fit-content;
+    background-color: $navbar;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-inline: 1rem;
+    padding-block: .5rem;
+    color: $white;
+    font-family: $font-accent;
+    @include media-width{
+        p{
+            max-width: 15ch;
+        }
+        img{
+            max-width: 100%;
+        }
+    }
+}
+
+.temperature{
+    font-size: 6rem;
+}
+
+.card-right{
+    .information{
+        width: 100%;
+        height: 100%;
+        ul{
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+        .a-show-details{
+            @include flex-center;
+            gap: 1rem;
+            transition: all 300ms ease-out;
+            border-radius: 10px;
+            &:hover{
+                background: $navbar;
+                @include media-width{
+                    background: transparent;
+                }
+            }
+            &:active{
+                background: transparent;
+            }
+        }
+        img{
+            width: 100px;
+        }
+    }
+    .card-right-description{
+        text-align: center;
+        @include media-width{
+            font-size: 1.125rem;
+        }
+    }
+}
+
+.card-left{
+    #humidity::before{
+        content: "Humidity: ";
+    }
+    #wind::before{
+        content: "Wind: ";
+    }
+    #pressure{
+        text-align: center;
+    }
+    #pressure::before{
+        content: "Pressure: ";
+    }
+    #temp-feel::before{
+        content: "Real feel: ";
+    }
+}
+
+.weather-details{
+    z-index: 999;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    background: $navbar;
+    @include flex-center;
+    #weather-details-inner{
+        @include flex-center;
+        font-family: $font-accent;
+        padding: .5rem;
+        flex-direction: column;
+        width: 85%;
+        color: $white;
+        font-size: 1.5rem;
+        box-shadow: $shadow;
+        background: linear-gradient(150deg, #636362, #1c1c1b);
+        border-radius: 10px;
+        @include media-width{
+            font-size: 1.125rem;
+        }
+    }
+    .weather-details-hours{
+        padding-block: 0.5rem;
+        width: 100%;
+        display: grid;
+        column-gap: 1rem;
+        justify-content: center;
+        grid-template-columns: repeat(4, 1fr);
+        @include media-width{
+            grid-template-columns: repeat(1, 1fr);
+        }
+        @include media-height{
+            grid-template-columns: repeat(2, 1fr);
+        }
+        img{
+            width: 50px;
+            margin-left: 1vw;
+            @include media-width{
+                width: 20px
+            }
+        }
+        #span-hour{
+            width: 100%;
+            border-radius: 10px;
+            @include flex-center;
+            @include media-width{
+                font-size: 1rem;
+            }
+            transition: 300ms all ease-out;
+            &:hover{
+                background: $navbar;
+            }
+        }
+    }
+}
+
+.hide{
+    display: none;
+}
+
+
+// .button-close{
+//     position: absolute;
+//     bottom: 0;
+//     right: 0;
+// }

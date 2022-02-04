@@ -1,0 +1,26 @@
+@mixin flex-center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+$breakpoint-tablet: 900px;
+
+@mixin media-width {
+    @media (max-width: $breakpoint-tablet) {
+        @content;
+    } 
+}
+
+@mixin media-height {
+    @media (max-height: 50rem) {
+        @content;
+    } 
+}
+
+@mixin media-height-small {
+    @media (max-height: 42rem) {
+        @content;
+    } 
+}
