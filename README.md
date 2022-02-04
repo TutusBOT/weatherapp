@@ -1,2 +1,2 @@
 # MinimalistWeatherApp
-Minimalist weather app with casual touch to it
+Minimalist weather app with casual touch added to it
