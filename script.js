@@ -17,6 +17,7 @@ let pressure = document.getElementById("pressure")
 let humidity = document.getElementById("humidity")
 let tempFeel = document.getElementById("temp-feel")
 let li1 = document.getElementById("clickable-li1")
+let warning = document.querySelector(".warning")
 
 let data = getData()
 let dataForecast = async(whichDayClicked) =>{
@@ -41,20 +42,23 @@ let dataForecast = async(whichDayClicked) =>{
 async function getData(userLocation) {
     const userLocationParsed = userLocation || "Warsaw"
 
-    const response = await fetch("http://api.weatherapi.com/v1/forecast.json?key=[APIKEY]&days=3&q="+userLocationParsed).catch(()=>{console.log("chuj");})
+    const response = await fetch("http://api.weatherapi.com/v1/forecast.json?key=[APIKEY]&days=3&q="+userLocationParsed).catch(()=>{console.log("Fetch error");})
 
 
 
     if(response.ok == false){
-        alert("Type correct city")
+        warning.classList.add("active")
+        setTimeout(() =>{
+            warning.classList.remove("active")
+        }, 2000)
     }else{
     
-    const results = await response.json().catch(()=>{console.log("chuj2");})
+    const results = await response.json().catch(()=>{console.log("JSON error");})
 
     // let weekdayDate1 = new Date(results.forecast.forecastday[0].date) always today
     let weekdayDate2 = new Date(results.forecast.forecastday[1].date)
     let weekdayDate3 = new Date(results.forecast.forecastday[2].date)
-    console.log(results);
+    // console.log(results); logs out data from api in object
 
     let localTime = results.location.localtime;
     city.innerText = results.location.name

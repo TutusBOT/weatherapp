@@ -104,17 +104,28 @@ body {
   outline: none;
 }
 .navbar .button {
+  position: relative;
   color: #ebebeb;
   border: none;
   font-size: 1.5rem;
   background-color: rgba(18, 18, 18, 0.5);
-}
-.navbar input[type=button] {
-  cursor: pointer;
-}
-.navbar input[type=text] {
   border-radius: 10px 0 0 10px;
   padding-left: 0.7rem;
+}
+.navbar .warning {
+  font-family: "Quicksand", sans-serif;
+  font-size: 1.5rem;
+  background-color: #ebebeb;
+  border-radius: 10px;
+  padding: 0.25rem;
+  position: absolute;
+  color: red;
+  right: 20px;
+  opacity: 0;
+}
+.navbar .warning.active {
+  -webkit-animation: fade-out 2000ms ease-in;
+          animation: fade-out 2000ms ease-in;
 }
 
 .logo {
@@ -367,4 +378,22 @@ footer {
 
 .hide {
   display: none;
+}
+
+@-webkit-keyframes fade-out {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+@keyframes fade-out {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
 }/*# sourceMappingURL=style.css.map */
